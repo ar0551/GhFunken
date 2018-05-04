@@ -1,0 +1,25 @@
+INSTRUCTIONS TO INSTALL PYSERIAL FOR USE WITH FUNKEN and GRASSHOPPER
+
+PySerial - https://pythonhosted.org/pyserial/
+BSD license, (C) 2001-2017 Chris Liechti <cliechti@gmx.net>
+
+
+1 - Download the PySerial Github repository from: https://github.com/pyserial/pyserial
+
+2 - Unzip it and copy the "serial" folder to: C:\Program Files\Rhinoceros 5.0\Plug-ins\IronPython\Lib\site-packages
+
+3 - Open Rhino and go to Tools > Python Script > Edit...
+
+4 - in the Rhino Python editor, go to Tools > Options
+
+5 - In the Options window, click on the "+" button to add a new location to the search path
+
+6 - Navigate to the folder where PySerial is placed (C:\Program Files\Rhinoceros 5.0\Plug-ins\IronPython\Lib\site-packages), select it and press OK
+
+7 - If you want to check if the installation went fine, write in the editor "import pyserial" and run the script. If no error pops up, you are ready to go.
+
+
+
+
+
+
