@@ -28,9 +28,11 @@ import time
 
 if PORT is None:
     PORT = sc.sticky['main_listener'].com_ports[0]
-
 if ID is None:
     ID = 1
+
+_PORT = PORT
+_ID = ID
 
 comm = "DW " + str(PIN) + " " + str(VAL) + "\n"
 sc.sticky['main_listener'].send_command(comm, PORT, ID)

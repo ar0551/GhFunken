@@ -28,16 +28,19 @@ import scriptcontext as sc
 import time
 
 
+if PORT is None:
+    PORT = sc.sticky['main_listener'].com_ports[0]
+if ID is None:
+    ID = 1
+
+_PORT = PORT
+_ID = ID
+
 if SET:
-    
-    if PORT is None:
-        PORT = sc.sticky['main_listener'].com_ports[0]
-    
-    if ID is None:
-        ID = 1
-    
     comm = "PM " + str(PIN) + " " + str(MODE) + "\n"
     sc.sticky['main_listener'].send_command(comm, PORT, ID)
     if MODE == 0:
         comm_act = "DW " + str(PIN) + " 1\n"
         sc.sticky['main_listener'].send_command(comm, PORT, ID)
+
+

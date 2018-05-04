@@ -26,13 +26,16 @@ except: pass
 import scriptcontext as sc
 import time
 
+
+if PORT is None:
+    PORT = sc.sticky['main_listener'].com_ports[0]
+if ID is None:
+    ID = 1
+
+_PORT = PORT
+_ID = ID
+
 if GET:
-    if PORT is None:
-        PORT = sc.sticky['main_listener'].com_ports[0]
-    
-    if ID is None:
-        ID = 1
-    
     comm = "AR " + str(PIN) + "\n"
     response = sc.sticky['main_listener'].get_response(comm, "AR", PORT, ID)
     try:
