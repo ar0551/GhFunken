@@ -16,7 +16,7 @@ BSD license, (C) 2001-2017 Chris Liechti <cliechti@gmx.net>
 
 6 - Navigate to the folder where PySerial is placed (C:\Program Files\Rhinoceros 5.0\Plug-ins\IronPython\Lib\site-packages), select it and press OK
 
-7 - If you want to check if the installation went fine, write in the editor "import pyserial" and run the script. If no error pops up, you are ready to go.
+7 - If you want to check if the installation went fine, write in the editor "import serial" and run the script. If no error pops up, you are ready to go.
 
 
 
