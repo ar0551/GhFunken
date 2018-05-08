@@ -17,7 +17,7 @@ Provided by Funken 0.1
 
 ghenv.Component.Name = "Funken_Set PinMode"
 ghenv.Component.NickName = 'PinMode'
-ghenv.Component.Message = 'VER 0.2.0'
+ghenv.Component.Message = 'VER 0.2.1'
 ghenv.Component.IconDisplayMode = ghenv.Component.IconDisplayMode.application
 ghenv.Component.Category = "Funken"
 ghenv.Component.SubCategory = "0 | Funken"
@@ -31,7 +31,7 @@ import time
 if PORT is None:
     PORT = sc.sticky['main_listener'].com_ports[0]
 if ID is None:
-    ID = 1
+    ID = sc.sticky['main_listener'].ser_conn[PORT].devices_ids[0]
 
 _PORT = PORT
 _ID = ID

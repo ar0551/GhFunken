@@ -1,24 +1,25 @@
-INSTRUCTIONS TO INSTALL PYSERIAL FOR USE WITH FUNKEN and GRASSHOPPER
-
+----- STEP#01 - PySerial Installation -----
 PySerial - https://pythonhosted.org/pyserial/
 BSD license, (C) 2001-2017 Chris Liechti <cliechti@gmx.net>
-
-
 1 - Download the PySerial Github repository from: https://github.com/pyserial/pyserial
-
 2 - Unzip it and copy the "serial" folder to: C:\Program Files\Rhinoceros 5.0\Plug-ins\IronPython\Lib\site-packages
-
 3 - Open Rhino and go to Tools > Python Script > Edit...
-
 4 - in the Rhino Python editor, go to Tools > Options
-
 5 - In the Options window, click on the "+" button to add a new location to the search path
-
 6 - Navigate to the folder where PySerial is placed (C:\Program Files\Rhinoceros 5.0\Plug-ins\IronPython\Lib\site-packages), select it and press OK
-
 7 - If you want to check if the installation went fine, write in the editor "import serial" and run the script. If no error pops up, you are ready to go.
+-----
 
+-----STEP#02 - GhPython Installation (ONLY for Rhino 5) -----
+1 - If you do not have GhPython installed, download it from Food4Rhino: www.food4rhino.com/app/ghpython
+2 - Copy the .gha file in the Grasshopper libraries folder (File -> Special folders -> Libraries)
+3 - Right click on the copied file, go to properties and make sure the file is not blocked.
+4 - Reload Grasshopper and under Math/Scripts you should have a new Python component.
+-----
 
+-----STEP#03 - GhFunken Installation -----
+1 - Unzip the GhFunken file, and copy the content of the UserObjects folder into Gh user objects folder (File -> Special folders -> User Obejcts)
+2 - Reload Grasshopper and the Funken tab should appear.
 
 
 

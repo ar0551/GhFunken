@@ -14,7 +14,7 @@ Provided by Funken 0.1
 
 ghenv.Component.Name = "Funken_Setup Funken"
 ghenv.Component.NickName = 'SetupFnk'
-ghenv.Component.Message = 'VER 0.2.0'
+ghenv.Component.Message = 'VER 0.2.1'
 ghenv.Component.IconDisplayMode = ghenv.Component.IconDisplayMode.application
 ghenv.Component.Category = "Funken"
 ghenv.Component.SubCategory = "0 | Funken"
@@ -70,6 +70,7 @@ class SerialConnection(object):
         self.ser = serial.Serial(port, baudrate)  # open serial port
         
         self.devices = {}
+        self.devices_ids = []
     
     def register_devices(self):
         self.ser.write(b"GETID\n")
@@ -81,6 +82,7 @@ class SerialConnection(object):
                 if parsed_response[1] == "GETID":
                     if parsed_response[0] not in self.devices:
                         self.devices[parsed_response[0]] = Device(parsed_response[0])
+                        self.devices_ids.append(parsed_response[0])
         
         time.sleep(0.1)
         for key in self.devices:

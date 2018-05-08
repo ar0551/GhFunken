@@ -16,7 +16,7 @@ Provided by Funken 0.1
 
 ghenv.Component.Name = "Funken_Open Serial Port"
 ghenv.Component.NickName = 'OpenPort'
-ghenv.Component.Message = 'VER 0.2.0'
+ghenv.Component.Message = 'VER 0.2.1'
 ghenv.Component.IconDisplayMode = ghenv.Component.IconDisplayMode.application
 ghenv.Component.Category = "Funken"
 ghenv.Component.SubCategory = "0 | Funken"
