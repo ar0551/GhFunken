@@ -14,7 +14,7 @@ Provided by Funken 0.1
 
 ghenv.Component.Name = "Funken_Scan Serial Ports"
 ghenv.Component.NickName = 'ScanPorts'
-ghenv.Component.Message = 'VER 0.2.1'
+ghenv.Component.Message = 'VER 0.3.0'
 ghenv.Component.IconDisplayMode = ghenv.Component.IconDisplayMode.application
 ghenv.Component.Category = "Funken"
 ghenv.Component.SubCategory = "0 | Funken"
@@ -22,7 +22,6 @@ try: ghenv.Component.AdditionalHelpFromDocStrings = "2"
 except: pass
 
 
-import scriptcontext as sc
 import _winreg as winreg
 import itertools
 
