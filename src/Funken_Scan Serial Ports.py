@@ -3,13 +3,13 @@
 #########################################################################
 
 """
-Description + license here
+Scan for available serial ports.
 -
-Provided by Funken 0.1
+Provided by Funken 0.3.0
     Args:
-        SCAN: Description...
+        SCAN: True to scan for available serial ports.
     Returns:
-        PORTS: Description...
+        PORTS: Available serial ports.
 """
 
 ghenv.Component.Name = "Funken_Scan Serial Ports"

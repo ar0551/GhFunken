@@ -3,15 +3,18 @@
 #########################################################################
 
 """
-Description + license here
+Write a digital value on a pin (mirrors the Arduino digitalWrite method).
 -
-Provided by Funken 0.1
+Provided by Funken 0.3.0
     Args:
-        PIN: Description...
-        VAL: Description...
-        PORT: Description...
+        PIN: The number of the pin where to write.
+        VAL: The value to write. It can be either 0 (LOW) or 1 (HIGH).
+        PORT: Serial port to send the message [Default is the first port available].
+        ID: ID of the device [Default is the first device available].
     Returns:
-        VAL_OUT: Description...
+        _COMM: Funken command.
+        _PORT: Serial port where the message was sent (for daisy-chaining). 
+        _ID: Device ID (for daisy-chaining). 
 """
 
 ghenv.Component.Name = "Funken_Digital Write"
@@ -62,10 +65,11 @@ def main(pin, value, port, id):
     
     comm = "DW " + str(PIN) + " " + str(value) + "\n"
     sc.sticky['pyFunken'].send_command(comm, port, id)
-    return port, id
+    return comm, port, id
 
 result = main(PIN, VAL, PORT, ID)
 
 if result is not None:
-    _PORT = result[0]
-    _ID = result[1]
+    _COMM = result[0]
+    _PORT = result[1]
+    _ID = result[2]

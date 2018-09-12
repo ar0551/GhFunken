@@ -3,16 +3,19 @@
 #########################################################################
 
 """
-Description + license here
+Set pin mode (mirrors the Arduino pinMode method).
 -
-Provided by Funken 0.1
+Provided by Funken 0.3.0
     Args:
-        PIN: Description...
-        MODE: Description...
-        SET: Description...
-        PORT: Description...
+        PIN: The number of the pin whose mode you wish to set.
+        MODE: 0 for Input pins, 1 for Output pins.
+        SET: True to set the pin.
+        PORT: Serial port to send the message [Default is the first port available].
+        ID: ID of the device [Default is the first device available].
     Returns:
-        log: Description...
+        _COMM: Funken command.
+        _PORT: Serial port where the message was sent (for daisy-chaining). 
+        _ID: Device ID (for daisy-chaining). 
 """
 
 ghenv.Component.Name = "Funken_Set PinMode"
@@ -69,8 +72,8 @@ def main(pin, mode, set, port, id):
             id = sc.sticky['pyFunken'].ser_conn[port].devices_ids[0]
     
     if check_data:
+        comm = "PM " + str(pin) + " " + str(mode) + "\n"
         if set:
-            comm = "PM " + str(pin) + " " + str(mode) + "\n"
             sc.sticky['pyFunken'].send_command(comm, port, id)
             """
             ## handle input pullup
@@ -78,10 +81,11 @@ def main(pin, mode, set, port, id):
                 comm_act = "DW " + str(PIN) + " 1\n"
                 sc.sticky['main_listener'].send_command(comm, PORT, ID)
             """
-        return port, id
+        return comm, port, id
 
 result = main(PIN, MODE, SET, PORT, ID)
 
 if result is not None:
-    _PORT = result[0]
-    _ID = result[1]
+    _COMM = result[0]
+    _PORT = result[1]
+    _ID = result[2]

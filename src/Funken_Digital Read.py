@@ -3,15 +3,19 @@
 #########################################################################
 
 """
-Description + license here
+Read a digital input pin (mirrors the Arduino digitalRead method).
 -
-Provided by Funken 0.1
+Provided by Funken 0.3.0
     Args:
-        PIN: Description...
-        VAL: Description...
-        PORT: Description...
+        PIN: The number of the pin from which to read.
+        GET: True to read data.
+        PORT: Serial port to send the message [Default is the first port available].
+        ID: ID of the device [Default is the first device available].
     Returns:
-        VAL_OUT: Description...
+        VAL: Read value.
+        _COMM: Funken command.
+        _PORT: Serial port where the message was sent (for daisy-chaining). 
+        _ID: Device ID (for daisy-chaining). 
 """
 
 ghenv.Component.Name = "Funken_Digital Read"
@@ -61,19 +65,20 @@ def main(pin, get, port, id):
             id = sc.sticky['pyFunken'].ser_conn[port].devices_ids[0]
     
     value = None
+    comm = "DR " + str(pin) + "\n"
     if get:
-        comm = "DR " + str(pin) + "\n"
         response = sc.sticky['pyFunken'].get_response(comm, "DR", port, id)
         try:
             value = int(response.split(" ")[1])
         except:
             value = -1
         
-    return value, port, id
+    return value, comm, port, id
 
 result = main(PIN, GET, PORT, ID)
 
 if result is not None:
     VAL = result[0]
-    _PORT = result[1]
-    _ID = result[2]
+    _COMM = result[1]
+    _PORT = result[2]
+    _ID = result[3]

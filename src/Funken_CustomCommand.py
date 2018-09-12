@@ -3,15 +3,22 @@
 #########################################################################
 
 """
-Description + license here
+Send custom Funken commands.
 -
-Provided by Funken 0.1
+Provided by Funken 0.3.0
     Args:
-        PIN: Description...
-        VAL: Description...
-        PORT: Description...
+        TOKEN: Command identification token.
+        VAL: Command parameters.
+        RES: True if the command is expecting a response.
+        SEND: True to send the command.
+        PORT: Serial port to send the message [Default is the first port available].
+        ID: ID of the device [Default is the first device available].
     Returns:
-        VAL_OUT: Description...
+        OUT: Parsed command output (as list).
+        OUT_RAW: Raw command output (as string).
+        _COMM: Funken command.
+        _PORT: Serial port where the message was sent (for daisy-chaining). 
+        _ID: Device ID (for daisy-chaining). 
 """
 
 ghenv.Component.Name = "Funken_CustomCommand"
@@ -58,19 +65,17 @@ def main(token, values, return_data, send_data, port, id):
             id = sc.sticky['pyFunken'].ser_conn[port].devices_ids[0]
     
     response = None
+    comm = token
+    for v in values:
+        comm = comm + " " + str(v)
+    comm = comm + "\n"
     if send_data:
-        
-        comm = token
-        for v in values:
-            comm = comm + " " + str(v)
-        comm = comm + "\n"
-        
         if return_data:
             response = sc.sticky['pyFunken'].get_response(comm, token, port, id)
         else:
             sc.sticky['pyFunken'].send_command(comm, port, id)
     
-    return response, port, id
+    return response, comm, port, id
 
 
 result = main(TOKEN, VAL, RES, SEND, PORT, ID)
@@ -78,5 +83,6 @@ result = main(TOKEN, VAL, RES, SEND, PORT, ID)
 if result is not None:
     OUT_RAW = result[0]
     OUT = result[0].split(" ")
-    _PORT = result[1]
-    _ID = result[2]
+    _COMM = result[1]
+    _PORT = result[2]
+    _ID = result[3]

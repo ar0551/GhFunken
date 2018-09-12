@@ -3,15 +3,17 @@
 #########################################################################
 
 """
-Description + license here
+Open a serial port and register avaialble Funken devices.
 -
-Provided by Funken 0.1
+Provided by Funken 0.3.0
     Args:
-        OPEN: Description...
-        PORT: Description...
-        LISTEN: Description...
+        
+        PORT: Serial port to open.
+        BAUD: Communication baudrate [Funken default: 57600].
+        OPEN: True to open the port for communication.
+        REG: Register devices to access available Funken commands.
     Returns:
-        log: Description...
+        LOG: Information about connected devices.
 """
 
 ghenv.Component.Name = "Funken_Open Serial Port"
