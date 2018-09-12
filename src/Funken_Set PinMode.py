@@ -53,19 +53,25 @@ def main(pin, mode, set, port, id):
         set = False
     
     if port is None:
-        port = sc.sticky["pyFunken"].com_ports[0]
-        msg = "No port provided. Port set to " + port
-        ghenv.Component.AddRuntimeMessage(gh.Kernel.GH_RuntimeMessageLevel.Remark, msg)
+        if len(sc.sticky["pyFunken"].com_ports) == 0:
+            msg = "No serial connection available. Did you connect open the serial port?"
+            ghenv.Component.AddRuntimeMessage(gh.Kernel.GH_RuntimeMessageLevel.Warning, msg)
+            return
+        else:
+            port = sc.sticky["pyFunken"].com_ports[0]
     
     if id is None:
-        id = sc.sticky['pyFunken'].ser_conn[port].devices_ids[0]
-        msg = "No id provided. Id set to " + str(id)
-        ghenv.Component.AddRuntimeMessage(gh.Kernel.GH_RuntimeMessageLevel.Remark, msg)
+        if len(sc.sticky['pyFunken'].ser_conn[port].devices_ids) == 0:
+            msg = "No device available. Did you connect an Arduino-compatible device and registered it?"
+            ghenv.Component.AddRuntimeMessage(gh.Kernel.GH_RuntimeMessageLevel.Warning, msg)
+            return
+        else:
+            id = sc.sticky['pyFunken'].ser_conn[port].devices_ids[0]
     
     if check_data:
         if set:
             comm = "PM " + str(pin) + " " + str(mode) + "\n"
-            sc.sticky['pyFunken'].send_command(comm, PORT, ID)
+            sc.sticky['pyFunken'].send_command(comm, port, id)
             """
             ## handle input pullup
             if MODE == 0:

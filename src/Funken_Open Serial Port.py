@@ -40,21 +40,19 @@ except:
     ghenv.Component.AddRuntimeMessage(gh.Kernel.GH_RuntimeMessageLevel.Error, msg)
 
 
-def main(port, baud, open, register):
+def main(ports, bauds, open, register):
     
     check_data = True
     
-    if len(port) == 0:
+    if len(ports) == 0:
         check_data = False
         msg = "No serial port provided."
-        ghenv.Component.AddRuntimeMessage(gh.Kernel.GH_RuntimeMessageLevel.Error, msg)
+        ghenv.Component.AddRuntimeMessage(gh.Kernel.GH_RuntimeMessageLevel.Warning, msg)
     
-    if len(baud) == 0:
-        baud = [57600]
-        msg = "Baudrate set to Funken default: 57600"
-        ghenv.Component.AddRuntimeMessage(gh.Kernel.GH_RuntimeMessageLevel.Remark, msg)
+    if len(bauds) == 0:
+        bauds = [57600]
     
-    elif len(baud) > 1 and len(baud) != len(port):
+    elif len(bauds) > 1 and len(bauds) != len(ports):
         check_data = False
         msg = "Wrong number of comports and baudrates."
         ghenv.Component.AddRuntimeMessage(gh.Kernel.GH_RuntimeMessageLevel.Error, msg)
@@ -66,21 +64,46 @@ def main(port, baud, open, register):
         register = False
     
     if check_data:
+        
+        if sc.sticky.has_key("log") == False:
+            sc.sticky["log"] = ""
+        
         if sc.sticky.has_key("pyFunken") == False:
             sc.sticky['pyFunken'] = funken.PyFunken([],[])
         
         if open:
-            for i in xrange(len(port)):
-                if len(baud) == 1:
-                    sc.sticky['pyFunken'].add_serial_connection(PORT[i], BAUD[0])
+            sc.sticky["log"] = ""
+            for i in xrange(len(ports)):
+                baud = None
+                if len(bauds) == 1:
+                    baud = bauds[0]
                 else:
-                    sc.sticky['pyFunken'].add_serial_connection(port[i], baud[i])
+                    baud = bauds[i]
+                try:
+                    sc.sticky['pyFunken'].add_serial_connection(ports[i], baud)
+                    sc.sticky["log"] = sc.sticky["log"] + str(ports[i]) + ":\n" + "No Funken device registered\n"
+                    sc.sticky["log"] = sc.sticky["log"] + "---\n"
+                except:
+                    sc.sticky["log"] = sc.sticky["log"] + str(ports[i]) + ":\n" + "Could not open the serial port\n"
+                    sc.sticky["log"] = sc.sticky["log"] + "---\n"
+                
         
         if register:
-            for conn in sc.sticky['pyFunken'].ser_conn:
-                sc.sticky['pyFunken'].ser_conn[conn].register_devices()
-                print sc.sticky['pyFunken'].ser_conn[conn].port, sc.sticky['pyFunken'].ser_conn[conn].devices
-                for device in sc.sticky['pyFunken'].ser_conn[conn].devices:
-                    print sc.sticky['pyFunken'].ser_conn[conn].devices[device].tokens
+            sc.sticky["log"] = ""
+            for port in ports:
+                try:
+                    sc.sticky['pyFunken'].ser_conn[port].register_devices()
+                    sc.sticky["log"] = sc.sticky["log"] + str(sc.sticky['pyFunken'].ser_conn[port].port) + ":\n"
+                    if len(sc.sticky['pyFunken'].ser_conn[port].devices) > 0:
+                        for device in sc.sticky['pyFunken'].ser_conn[port].devices:
+                            sc.sticky["log"] = sc.sticky["log"] + str(device) + ":" + str(sc.sticky['pyFunken'].ser_conn[port].devices[device].tokens.keys()) + "\n"
+                    else:
+                        sc.sticky["log"] = sc.sticky["log"] + "No Funken device available\n"
+                except:
+                    sc.sticky["log"] = sc.sticky["log"] + str(port) + ":\n" + "Could not open the serial port\n"
+                    
+                sc.sticky["log"] = sc.sticky["log"] + "---\n"
+    
+    return sc.sticky["log"]
 
-main(PORT, BAUD, OPEN, REG)
+LOG = main(PORT, BAUD, OPEN, REG)
