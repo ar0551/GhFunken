@@ -82,7 +82,10 @@ result = main(TOKEN, VAL, RES, SEND, PORT, ID)
 
 if result is not None:
     OUT_RAW = result[0]
-    OUT = result[0].split(" ")
+    if result[0] is not None:
+        OUT = result[0].split(" ")
+    else:
+        OUT = None
     _COMM = result[1]
     _PORT = result[2]
     _ID = result[3]
