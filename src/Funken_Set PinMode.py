@@ -20,11 +20,11 @@ Provided by Funken 0.3.0
 
 ghenv.Component.Name = "Funken_Set PinMode"
 ghenv.Component.NickName = 'PinMode'
-ghenv.Component.Message = 'VER 0.3.0'
+ghenv.Component.Message = 'VER 0.3.1'
 ghenv.Component.IconDisplayMode = ghenv.Component.IconDisplayMode.application
 ghenv.Component.Category = "Funken"
-ghenv.Component.SubCategory = "0 | Funken"
-try: ghenv.Component.AdditionalHelpFromDocStrings = "3"
+ghenv.Component.SubCategory = "1 | Arduino"
+try: ghenv.Component.AdditionalHelpFromDocStrings = "1"
 except: pass
 
 import scriptcontext as sc
@@ -75,12 +75,7 @@ def main(pin, mode, set, port, id):
         comm = "PM " + str(pin) + " " + str(mode) + "\n"
         if set:
             sc.sticky['pyFunken'].send_command(comm, port, id)
-            """
-            ## handle input pullup
-            if MODE == 0:
-                comm_act = "DW " + str(PIN) + " 1\n"
-                sc.sticky['main_listener'].send_command(comm, PORT, ID)
-            """
+        
         return comm, port, id
 
 result = main(PIN, MODE, SET, PORT, ID)

@@ -14,11 +14,11 @@ Provided by Funken 0.3.0
 
 ghenv.Component.Name = "Funken_Scan Serial Ports"
 ghenv.Component.NickName = 'ScanPorts'
-ghenv.Component.Message = 'VER 0.3.0'
+ghenv.Component.Message = 'VER 0.3.1'
 ghenv.Component.IconDisplayMode = ghenv.Component.IconDisplayMode.application
 ghenv.Component.Category = "Funken"
 ghenv.Component.SubCategory = "0 | Funken"
-try: ghenv.Component.AdditionalHelpFromDocStrings = "2"
+try: ghenv.Component.AdditionalHelpFromDocStrings = "1"
 except: pass
 
 
