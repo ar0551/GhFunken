@@ -5,7 +5,7 @@
 """
 Write a digital value on a pin (mirrors the Arduino digitalWrite method).
 -
-Provided by Funken 0.3.0
+Provided by Funken 0.3
     Args:
         PIN: The number of the pin where to write.
         VAL: The value to write. It can be either 0 (LOW) or 1 (HIGH).
@@ -20,7 +20,7 @@ Provided by Funken 0.3.0
 
 ghenv.Component.Name = "Funken_Digital Write"
 ghenv.Component.NickName = 'DigitalWrite'
-ghenv.Component.Message = 'VER 0.3.1'
+ghenv.Component.Message = 'VER 0.3.2'
 ghenv.Component.IconDisplayMode = ghenv.Component.IconDisplayMode.application
 ghenv.Component.Category = "Funken"
 ghenv.Component.SubCategory = "1 | Arduino"

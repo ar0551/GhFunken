@@ -5,7 +5,7 @@
 """
 Send custom Funken commands.
 -
-Provided by Funken 0.3.0
+Provided by Funken 0.3
     Args:
         TOKEN: Command identification token.
         VAL: Command parameters.
@@ -23,7 +23,7 @@ Provided by Funken 0.3.0
 
 ghenv.Component.Name = "Funken_CustomCommand"
 ghenv.Component.NickName = 'CustomComm'
-ghenv.Component.Message = 'VER 0.3.1'
+ghenv.Component.Message = 'VER 0.3.2'
 ghenv.Component.IconDisplayMode = ghenv.Component.IconDisplayMode.application
 ghenv.Component.Category = "Funken"
 ghenv.Component.SubCategory = "2 | Custom"

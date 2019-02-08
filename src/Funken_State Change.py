@@ -5,7 +5,7 @@
 """
 Checks for an input switching state.
 -
-Provided by Funken 0.3.0
+Provided by Funken 0.3
     Args:
         VAL: Value to monitor
     Returns:
@@ -15,7 +15,7 @@ Provided by Funken 0.3.0
 
 ghenv.Component.Name = "Funken_State Change"
 ghenv.Component.NickName = 'StateCh'
-ghenv.Component.Message = 'VER 0.3.1'
+ghenv.Component.Message = 'VER 0.3.2'
 ghenv.Component.IconDisplayMode = ghenv.Component.IconDisplayMode.application
 ghenv.Component.Category = "Funken"
 ghenv.Component.SubCategory = "3 | Utilities"

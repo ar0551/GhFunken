@@ -5,7 +5,7 @@
 """
 Open a serial port and register avaialble Funken devices.
 -
-Provided by Funken 0.3.0
+Provided by Funken 0.3
     Args:
         
         PORT: Serial port to open.
@@ -18,7 +18,7 @@ Provided by Funken 0.3.0
 
 ghenv.Component.Name = "Funken_Open Serial Port"
 ghenv.Component.NickName = 'OpenPort'
-ghenv.Component.Message = 'VER 0.3.1'
+ghenv.Component.Message = 'VER 0.3.2'
 ghenv.Component.IconDisplayMode = ghenv.Component.IconDisplayMode.application
 ghenv.Component.Category = "Funken"
 ghenv.Component.SubCategory = "0 | Funken"

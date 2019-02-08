@@ -5,7 +5,7 @@
 """
 Read a digital input pin (mirrors the Arduino digitalRead method).
 -
-Provided by Funken 0.3.0
+Provided by Funken 0.3
     Args:
         PIN: The number of the pin from which to read.
         GET: True to read data.
@@ -20,7 +20,7 @@ Provided by Funken 0.3.0
 
 ghenv.Component.Name = "Funken_Digital Read"
 ghenv.Component.NickName = 'DigitalRead'
-ghenv.Component.Message = 'VER 0.3.1'
+ghenv.Component.Message = 'VER 0.3.2'
 ghenv.Component.IconDisplayMode = ghenv.Component.IconDisplayMode.application
 ghenv.Component.Category = "Funken"
 ghenv.Component.SubCategory = "1 | Arduino"

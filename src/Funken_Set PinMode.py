@@ -5,7 +5,7 @@
 """
 Set pin mode (mirrors the Arduino pinMode method).
 -
-Provided by Funken 0.3.0
+Provided by Funken 0.3
     Args:
         PIN: The number of the pin whose mode you wish to set.
         MODE: 0 for Input pins, 1 for Output pins.
@@ -20,7 +20,7 @@ Provided by Funken 0.3.0
 
 ghenv.Component.Name = "Funken_Set PinMode"
 ghenv.Component.NickName = 'PinMode'
-ghenv.Component.Message = 'VER 0.3.1'
+ghenv.Component.Message = 'VER 0.3.2'
 ghenv.Component.IconDisplayMode = ghenv.Component.IconDisplayMode.application
 ghenv.Component.Category = "Funken"
 ghenv.Component.SubCategory = "1 | Arduino"

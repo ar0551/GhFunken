@@ -5,7 +5,7 @@
 """
 Simple counter
 -
-Provided by Funken 0.3.0
+Provided by Funken 0.3
     Args:
         ADD: True to add a step to the counter
         STEP: step size
@@ -16,7 +16,7 @@ Provided by Funken 0.3.0
 
 ghenv.Component.Name = "Funken_Counter"
 ghenv.Component.NickName = 'Count'
-ghenv.Component.Message = 'VER 0.3.1'
+ghenv.Component.Message = 'VER 0.3.2'
 ghenv.Component.IconDisplayMode = ghenv.Component.IconDisplayMode.application
 ghenv.Component.Category = "Funken"
 ghenv.Component.SubCategory = "3 | Utilities"

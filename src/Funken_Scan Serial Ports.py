@@ -5,7 +5,7 @@
 """
 Scan for available serial ports.
 -
-Provided by Funken 0.3.0
+Provided by Funken 0.3
     Args:
         SCAN: True to scan for available serial ports.
     Returns:
