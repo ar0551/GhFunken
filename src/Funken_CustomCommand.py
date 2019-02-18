@@ -39,7 +39,7 @@ def main(token, values, return_data, send_data, port, id):
     if sc.sticky.has_key("pyFunken") == False:
         check_data = False
         msg = "No serial object available. Have you opened the serial port?"
-        ghenv.Component.AddRuntimeMessage(gh.Kernel.GH_RuntimeMessageLevel.Error, msg)
+        ghenv.Component.AddRuntimeMessage(gh.Kernel.GH_RuntimeMessageLevel.Warning, msg)
         return
     
     if return_data is None:

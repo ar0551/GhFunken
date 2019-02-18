@@ -47,6 +47,9 @@ def main(ports, bauds, open, register):
     
     check_data = True
     
+    if sc.sticky.has_key("log") == False:
+        sc.sticky["log"] = ""
+    
     if len(ports) == 0:
         check_data = False
         msg = "No serial port provided."
@@ -67,9 +70,6 @@ def main(ports, bauds, open, register):
         register = False
     
     if check_data:
-        
-        if sc.sticky.has_key("log") == False:
-            sc.sticky["log"] = ""
         
         if sc.sticky.has_key("pyFunken") == False:
             sc.sticky['pyFunken'] = funken.PyFunken([],[])
