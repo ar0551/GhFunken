@@ -63,11 +63,12 @@ def enumerate_serial_ports_mac():
 if SCAN:
     os_name = platform.system()
     
-    if os_name == "Windows":
-        PORTS = enumerate_serial_ports_win()
-    elif os_name == "Darwin":
+    if os_name == "Darwin":
         PORTS = enumerate_serial_ports_mac()
     else:
-        msg = "Your operative system is currently not supported by Funken.\n You might try to write the name of the serial port manually to the OpenPort component."
-        ghenv.Component.AddRuntimeMessage(gh.Kernel.GH_RuntimeMessageLevel.Error, msg)
+        try:
+            PORTS = enumerate_serial_ports_win()
+        except:
+            msg = "Your operative system is currently not supported by Funken.\n You might try to write the name of the serial port manually to the OpenPort component."
+            ghenv.Component.AddRuntimeMessage(gh.Kernel.GH_RuntimeMessageLevel.Error, msg)
 
