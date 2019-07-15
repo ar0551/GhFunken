@@ -11,14 +11,14 @@ Provided by Funken 0.3
         PORT: Serial port to open.
         BAUD: Communication baudrate [Funken default: 57600].
         OPEN: True to open the port for communication.
-        REG: Register devices to access available Funken commands.
+        REG: Register devices to access available Funken commands. Sometimes the connection takes some time to be established, so you might need to press this button 2-3 times.
     Returns:
         LOG: Information about connected devices.
 """
 
 ghenv.Component.Name = "Funken_Open Serial Port"
 ghenv.Component.NickName = 'OpenPort'
-ghenv.Component.Message = 'VER 0.3.2'
+ghenv.Component.Message = 'VER 0.3.3'
 ghenv.Component.IconDisplayMode = ghenv.Component.IconDisplayMode.application
 ghenv.Component.Category = "Funken"
 ghenv.Component.SubCategory = "0 | Funken"
@@ -43,12 +43,9 @@ except:
     ghenv.Component.AddRuntimeMessage(gh.Kernel.GH_RuntimeMessageLevel.Error, msg)
 
 
-def main(ports, bauds, open, register):
+def main(ports, bauds, open, register, log):
     
     check_data = True
-    
-    if sc.sticky.has_key("log") == False:
-        sc.sticky["log"] = ""
     
     if len(ports) == 0:
         check_data = False
@@ -75,38 +72,66 @@ def main(ports, bauds, open, register):
             sc.sticky['pyFunken'] = funken.PyFunken([],[])
         
         if open:
-            sc.sticky["log"] = ""
+            log = ""
             for i in xrange(len(ports)):
-                baud = None
-                if len(bauds) == 1:
-                    baud = bauds[0]
-                else:
-                    baud = bauds[i]
-                try:
-                    sc.sticky['pyFunken'].add_serial_connection(ports[i], baud)
-                    sc.sticky["log"] = sc.sticky["log"] + str(ports[i]) + ":\n" + "No Funken device registered\n"
-                    sc.sticky["log"] = sc.sticky["log"] + "---\n"
-                except:
-                    sc.sticky["log"] = sc.sticky["log"] + str(ports[i]) + ":\n" + "Could not open the serial port\n"
-                    sc.sticky["log"] = sc.sticky["log"] + "---\n"
-                
+                if ports[i] is not None:
+                    baud = None
+                    if len(bauds) == 1:
+                        baud = bauds[0]
+                    else:
+                        baud = bauds[i]
+                    try:
+                        sc.sticky['pyFunken'].add_serial_connection(ports[i], baud)
+                        log = log + str(ports[i]) + ":\n" + "No Funken device registered\n"
+                        log = log + "---\n"
+                    except:
+                        log = log + str(ports[i]) + ":\n" + "Could not open the serial port\n"
+                        log = log + "---\n"
         
         if register:
-            sc.sticky["log"] = ""
+            log = ""
             for port in ports:
                 try:
                     sc.sticky['pyFunken'].ser_conn[port].register_devices()
-                    sc.sticky["log"] = sc.sticky["log"] + str(sc.sticky['pyFunken'].ser_conn[port].port) + ":\n"
+                    log = log + str(sc.sticky['pyFunken'].ser_conn[port].port) + ":\n"
                     if len(sc.sticky['pyFunken'].ser_conn[port].devices) > 0:
                         for device in sc.sticky['pyFunken'].ser_conn[port].devices:
-                            sc.sticky["log"] = sc.sticky["log"] + str(device) + ":" + str(sc.sticky['pyFunken'].ser_conn[port].devices[device].tokens.keys()) + "\n"
+                            log = log + str(device) + ":" + str(sc.sticky['pyFunken'].ser_conn[port].devices[device].tokens.keys()) + "\n"
                     else:
-                        sc.sticky["log"] = sc.sticky["log"] + "No Funken device available\n"
+                        log = log + "No Funken device available\n"
+                
                 except:
-                    sc.sticky["log"] = sc.sticky["log"] + str(port) + ":\n" + "Could not open the serial port\n"
+                    log = log + str(port) + ":\n" + "Could not open the serial port\n"
                     
-                sc.sticky["log"] = sc.sticky["log"] + "---\n"
+                log = log + "---\n"
     
-    return sc.sticky["log"]
+    ## test if available serial ports are still active
+    if sc.sticky.has_key("pyFunken"):
+        
+        ## remove port names if no longer in use
+        for port in sc.sticky['pyFunken'].com_ports:
+            if sc.sticky['pyFunken'].ser_conn.has_key(port) == False:
+                sc.sticky['pyFunken'].com_ports =  filter(lambda a: a != port, sc.sticky['pyFunken'].com_ports)
+        
+        ## remove serial connections if no longer available
+        removed_keys = []
+        for port in sc.sticky['pyFunken'].ser_conn:
+            for device in sc.sticky['pyFunken'].ser_conn[port].devices:
+                try:
+                    sc.sticky['pyFunken'].send_command("TEST", port, device)
+                except:
+                    removed_keys.append(port)
+                    if port in sc.sticky['pyFunken'].com_ports:
+                        sc.sticky['pyFunken'].com_ports.remove(port) 
+                    break
+        for key in removed_keys:
+            sc.sticky['pyFunken'].ser_conn.pop(key)
+    
+    return log
 
-LOG = main(PORT, BAUD, OPEN, REG)
+
+if 'logger' not in globals():
+    logger = ""
+
+logger = main(PORT, BAUD, OPEN, REG, logger)
+LOG = logger

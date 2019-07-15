@@ -16,7 +16,7 @@ Provided by Funken 0.3
 
 ghenv.Component.Name = "Funken_Counter"
 ghenv.Component.NickName = 'Count'
-ghenv.Component.Message = 'VER 0.3.2'
+ghenv.Component.Message = 'VER 0.3.3'
 ghenv.Component.IconDisplayMode = ghenv.Component.IconDisplayMode.application
 ghenv.Component.Category = "Funken"
 ghenv.Component.SubCategory = "3 | Utilities"

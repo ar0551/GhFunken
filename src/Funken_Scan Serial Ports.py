@@ -14,7 +14,7 @@ Provided by Funken 0.3
 
 ghenv.Component.Name = "Funken_Scan Serial Ports"
 ghenv.Component.NickName = 'ScanPorts'
-ghenv.Component.Message = 'VER 0.3.2'
+ghenv.Component.Message = 'VER 0.3.3'
 ghenv.Component.IconDisplayMode = ghenv.Component.IconDisplayMode.application
 ghenv.Component.Category = "Funken"
 ghenv.Component.SubCategory = "0 | Funken"
@@ -25,6 +25,7 @@ import platform
 import Grasshopper as gh
 
 
+## SERIAL PORT SCAN - WINDOWS
 ## https://eli.thegreenplace.net/2009/07/31/listing-all-serial-ports-on-windows-with-python/
 def enumerate_serial_ports_win():
     """ Uses the Win32 registry to return an
@@ -52,8 +53,7 @@ def enumerate_serial_ports_win():
             break
     return ports
 
-## missing reference link 
-## !!! NOT TESTED !!!
+## SERIAL PORT SCAN - MAC
 def enumerate_serial_ports_mac():
     import glob
     ports = glob.glob("/dev/tty.*")

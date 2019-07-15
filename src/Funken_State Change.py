@@ -15,7 +15,7 @@ Provided by Funken 0.3
 
 ghenv.Component.Name = "Funken_State Change"
 ghenv.Component.NickName = 'StateCh'
-ghenv.Component.Message = 'VER 0.3.2'
+ghenv.Component.Message = 'VER 0.3.3'
 ghenv.Component.IconDisplayMode = ghenv.Component.IconDisplayMode.application
 ghenv.Component.Category = "Funken"
 ghenv.Component.SubCategory = "3 | Utilities"
@@ -38,11 +38,11 @@ if check_data:
         prev_value = False
     
     if VAL == True and prev_value != True:
-        tf = True
-        ft = False
-    elif VAL == False and prev_value != False:
-        ft = True
         tf = False
+        ft = True
+    elif VAL == False and prev_value != False:
+        ft = False
+        tf = True
     else:
         tf = False
         ft = False
