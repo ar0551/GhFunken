@@ -15,7 +15,7 @@ GhFunken is build on top of [PyFunken](https://github.com/ar0551/PyFunken) and [
 GhFunken acts as an interface to send commands to an Arduino devices running a Funken implementation. Hence, to work properly, GhFunken assumes you kwow what protocol is defined in the Funken implementation running on the Arduino. For more details on how to define your own protocol using Funken, see [here](https://github.com/astefas/Funken#how-to-use-funken). For basic Arduino protocols which are shipped with Funken, see [here](https://github.com/astefas/Funken/blob/master/README.md#quickstart).
 
 ### How to install GhFunken
-xxx
+See the Setup and Quickstart instructions in the release files. Installation instructions COMING SOON!
 
 ### Examples
 [Go to the examples folder in this repository and see a more detailed explanation of what is going on inside these examples.](https://github.com/ar0551/GhFunken/tree/master/exampleFiles)
