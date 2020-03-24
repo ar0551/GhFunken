@@ -1,0 +1,16 @@
+Funken: Serial Protocol Toolkit Arduino library (GPL) initiated by Alexander Stefas
+Copyright (c) 2018, Alexander Stefas
+https://github.com/astefas/Funken
+
+----- Arduino Library Installation -----
+1 - Make sure you have the Arduino IDE installed on your computer. If not, download it ( https://www.arduino.cc/en/Main/Software ) and install it.
+2 - Copy the "Funken" folder into your Arduino libraries folder (usually at "Documents/Arduino/libraries").
+3 - Restart your Arduino IDE.
+4 - If you go to File -> Examples, you should now have a Funken tab (it is probably at the bottom of the list, so scroll till you find it).
+5- You are ready to go. You can open one of the examples (02_BasicArduino is a good place to start), upload it to your Arduino board and start communicating with it. Enjoy Funken!
+-----
+
+For questions, bug reports and issues: https://github.com/astefas/Funken
+
+
+
